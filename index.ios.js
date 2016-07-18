@@ -16,7 +16,7 @@ import LoginPage from './src/pages/login-page.js' ;
 import RegisterPage from './src/pages/register-page.js';
 
 // Import Views
-import MainView from './src/views/main-view.js';
+import TabView from './src/views/tab-view.js';
 
 class Project extends Component {
     render() {
@@ -41,7 +41,7 @@ class Project extends Component {
         case 'Register': 
           return <RegisterPage navigator={navigator} />
         case 'Main': 
-          return <MainView navigator={navigator} />
+          return <TabView navigator={navigator} />
       }
   }
   configScene (route, routeStack) {

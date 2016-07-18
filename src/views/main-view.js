@@ -1,24 +1,20 @@
 import React, { Component, } from 'react'
-import { View, StyleSheet, Navigator } from 'react-native'
-
-// Import scrollable tab view 
-import ScrollableTabView from 'react-native-scrollable-tab-view';
-
-//Import Navbar
-import NavBar from '../components/NavBar.js'; 
+import { View, Text, StyleSheet, Navigator } from 'react-native'
 
 //Import Pages 
 import SettingsPage from '../pages/settings-page.js';
 import LoginPage from '../pages/login-page.js';
 import MainPage from '../pages/main-page.js';
-
-
+import SecondaryPage from '../pages/secondary-page.js';
 
 class MainView extends Component {
 
   static propTypes = {}
 
   static defaultProps = {}
+  
+  componentDidMount () {
+  }
 
   constructor(props) {
     super(props)
@@ -26,44 +22,31 @@ class MainView extends Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <NavBar 
-          textColor="white"
-          title="App Name"
-          leftText="Logout"
-          leftButton={() => this.logout()}
-        />
-        <ScrollableTabView 
-          tabBarPosition="bottom" 
-          style={styles.pageWrap}
-          tabBarUnderlineColor="white"
-          tabBarBackgroundColor="black"
-          tabBarInactiveTextColor="dimgrey"
-          tabBarActiveTextColor="white" 
-          >
-            <MainPage tabLabel="Main" />
-            <SettingsPage tabLabel="Settings" />
-       
-        </ScrollableTabView>
-      </View>
-    )
+      const routes = [
+        {id: 'Main', config: Navigator.SceneConfigs.PushFromRight},
+      ];
+      return (
+          <Navigator 
+            initialRouteStack={routes}
+            initialRoute={routes[0]}
+            renderScene={this.renderScene}
+            configureScene={this.configScene}
+          />
+      );
   }
-  logout () {
-    this.props.navigator.pop();
+
+  renderScene (route, navigator) {
+      switch (route.id) {
+        case 'Main': 
+          return <MainPage navigator={navigator} parentNavigator={this.props.navigator}/>
+        case 'Secondary':
+            return <SecondaryPage navigator={navigator} parentNavigator={this.props.navigator}/>
+      }
+  }
+
+  configScene (route, routeStack) {
+    return route.config
   }
 }
-
-var styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
-    flex: 1,
-    flexDirection: 'column'
-  },
-  pageWrap: {
-    flex: 11
-  }
-});
-
 
 export default MainView
