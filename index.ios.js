@@ -21,7 +21,7 @@ import MainView from './src/views/main-view.js';
 class Project extends Component {
     render() {
       const routes = [
-        {id: 'Splash', config: Navigator.SceneConfigs.FloatFromRight},
+        {id: 'Splash', config: Navigator.SceneConfigs.PushFromRight},
       ];
       return (
           <Navigator 

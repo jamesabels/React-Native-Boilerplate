@@ -9,7 +9,7 @@ class SplashPage extends Component {
   
   componentDidMount () {
    setTimeout(function () {  
-      this.props.navigator.push({id: 'Login', config: Navigator.SceneConfigs.FloatFromBottom});
+      this.props.navigator.push({id: 'Login', config: Navigator.SceneConfigs.PushFromRight});
     }.bind(this), 2000); 
   }
 

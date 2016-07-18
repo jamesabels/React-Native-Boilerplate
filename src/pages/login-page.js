@@ -56,10 +56,10 @@ class LoginPage extends Component {
   }
   
   register () {
-    this.props.navigator.push({id: 'Register', config: Navigator.SceneConfigs.VerticalUpSwipeJump});
+    this.props.navigator.push({id: 'Register', config: Navigator.SceneConfigs.FloatFromBottom});
   }
   login () {
-    this.props.navigator.push({id: 'Main', config: Navigator.SceneConfigs.FloatFromBottom})
+    this.props.navigator.push({id: 'Main', config: Navigator.SceneConfigs.PushFromRight})
   }
 }
 
