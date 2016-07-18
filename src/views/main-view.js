@@ -10,6 +10,7 @@ import NavBar from '../components/NavBar.js';
 //Import Pages 
 import SettingsPage from '../pages/settings-page.js';
 import LoginPage from '../pages/login-page.js';
+import MainPage from '../pages/main-page.js';
 
 
 
@@ -30,8 +31,8 @@ class MainView extends Component {
         <NavBar 
           textColor="white"
           title="App Name"
-          rightText="Logout"
-          rightButton={() => this.logout()}
+          leftText="Logout"
+          leftButton={() => this.logout()}
         />
         <ScrollableTabView 
           tabBarPosition="bottom" 
@@ -41,7 +42,7 @@ class MainView extends Component {
           tabBarInactiveTextColor="dimgrey"
           tabBarActiveTextColor="white" 
           >
-
+            <MainPage tabLabel="Main" />
             <SettingsPage tabLabel="Settings" />
        
         </ScrollableTabView>
@@ -55,6 +56,7 @@ class MainView extends Component {
 
 var styles = StyleSheet.create({
   container: {
+    marginTop: 20,
     flex: 1,
     flexDirection: 'column'
   },

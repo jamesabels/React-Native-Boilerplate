@@ -12,7 +12,7 @@ import t from 'tcomb-form-native';
 
 var Form = t.form.Form; 
 
-var Login = t.struct({
+var Register = t.struct({
   first_name: t.maybe(t.String),
   last_name: t.maybe(t.String),
   username: t.String,
@@ -46,7 +46,7 @@ class RegisterPage extends Component {
           <Text style={styles.pageHeader}>Register</Text>
           <Form 
             ref="form" 
-            type={Login} 
+            type={Register} 
             options={Options} 
           />
           <TouchableHighlight style={styles.button} onPress={() => this.login()} underlayColor='dimgrey'>
