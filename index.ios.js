@@ -14,11 +14,23 @@ import {
 import SplashPage from './src/pages/splash-page.js';
 import LoginPage from './src/pages/login-page.js' ;
 import RegisterPage from './src/pages/register-page.js';
+import SettingsPage from './src/pages/settings-page.js';
+import Page from './src/pages/page.js';
 
 // Import Views
 import TabView from './src/views/tab-view.js';
 
+// Import Components
+import NavBar from './src/components/NavBar.js';
+
 class Project extends Component {
+
+      constructor(props) {
+        super(props)
+        this.state = {
+        }
+      }
+
     render() {
       const routes = [
         {id: 'Splash', config: Navigator.SceneConfigs.PushFromRight},
@@ -33,15 +45,33 @@ class Project extends Component {
       );
   }
   renderScene (route, navigator) {
+
       switch (route.id) {
         case 'Splash':
           return <SplashPage navigator={navigator}/>
-        case 'Login': 
-          return <LoginPage navigator={navigator} /> 
+
+        case 'Login':
+
+          return  (
+          <Page activeTab='Login' navigator={navigator} >
+              <LoginPage navigator={navigator} />
+          </Page>
+          );
+
         case 'Register': 
-          return <RegisterPage navigator={navigator} />
-        case 'Main': 
-          return <TabView navigator={navigator} />
+
+          return  (
+                <Page activeTab='Register' navigator={navigator} >
+                    <RegisterPage navigator={navigator} />
+                </Page>
+           );
+
+        case 'Settings':
+         return  (
+             <Page activeTab='Settings' navigator={navigator} >
+                 <SettingsPage navigator={navigator} />
+             </Page>
+          );
       }
   }
   configScene (route, routeStack) {

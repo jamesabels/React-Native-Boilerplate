@@ -34,6 +34,13 @@ class SettingsPage extends Component {
   render() {
     return (
       <View style={styles.container}>
+       <NavBar
+            textColor="white"
+            title="Settings"
+            leftText="Back"
+            buttonSize={16}
+            leftButton={() => this.back()}
+        />
         <View style={styles.pageWrap}>
           <Form 
             ref="form" 
@@ -44,9 +51,10 @@ class SettingsPage extends Component {
       </View>
     );
   }
-  login () {
+
+   back () {
     this.props.navigator.pop()
-  }
+   }
 }
 
 var styles = StyleSheet.create({

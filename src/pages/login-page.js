@@ -41,7 +41,6 @@ class LoginPage extends Component {
           rightButton={() => this.register()}
         />
         <View style={styles.pageWrap}>
-          <Text style={styles.pageHeader}>Login</Text>
           <Form 
             ref="form" 
             type={Login} 
@@ -56,10 +55,10 @@ class LoginPage extends Component {
   }
   
   register () {
-    this.props.navigator.push({id: 'Register', config: Navigator.SceneConfigs.FloatFromBottom});
+    this.props.navigator.push({id: 'Register', config: Navigator.SceneConfigs.PushFromRight});
   }
   login () {
-    this.props.navigator.push({id: 'Main', config: Navigator.SceneConfigs.PushFromRight})
+    this.props.navigator.push({id: 'Login', config: Navigator.SceneConfigs.PushFromRight});
   }
 }
 

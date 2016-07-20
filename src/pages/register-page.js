@@ -40,10 +40,9 @@ class RegisterPage extends Component {
           title="Register"
           leftText="Back"
           buttonSize={16}
-          leftButton={() => this.login()}
+          leftButton={() => this.back()}
         />
         <View style={styles.pageWrap}>
-          <Text style={styles.pageHeader}>Register</Text>
           <Form 
             ref="form" 
             type={Register} 
@@ -56,8 +55,13 @@ class RegisterPage extends Component {
       </View>
     );
   }
-  login () {
+
+  back () {
     this.props.navigator.pop()
+  }
+
+  login () {
+    this.props.navigator.push({id: 'Login', config: Navigator.SceneConfigs.PushFromRight});
   }
 }
 
