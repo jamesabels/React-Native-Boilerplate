@@ -4,7 +4,6 @@ import { View, Text, StyleSheet, Navigator } from 'react-native'
 //Import Pages 
 import SettingsPage from '../pages/settings-page.js';
 import LoginPage from '../pages/login-page.js';
-import MainPage from '../pages/main-page.js';
 import SecondaryPage from '../pages/secondary-page.js';
 
 class MainView extends Component {

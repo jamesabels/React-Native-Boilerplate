@@ -10,12 +10,9 @@ import NavBar from '../components/NavBar.js';
 //Import Pages 
 import SettingsPage from '../pages/settings-page.js';
 import LoginPage from '../pages/login-page.js';
-import MainPage from '../pages/main-page.js';
 
 // Import Views
 import MainView from './main-view.js';
-
-
 
 class TabView extends Component {
 
