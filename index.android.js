@@ -1,32 +1,81 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
+
+// Import React Naitve Components
 import {
+  Navigator, 
+  TouchableHighlight,
   AppRegistry,
   StyleSheet,
   Text,
   View
 } from 'react-native';
 
+// Import Pages 
+import SplashPage from './src/pages/splash-page.js';
+import LoginPage from './src/pages/login-page.js' ;
+import RegisterPage from './src/pages/register-page.js';
+import SettingsPage from './src/pages/settings-page.js';
+import Page from './src/pages/page.js';
+
+// Import Views
+import TabView from './src/views/tab-view.js';
+
+// Import Components
+import NavBar from './src/components/NavBar.js';
+
 class Project extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
+
+      constructor(props) {
+        super(props)
+        this.state = {
+        }
+      }
+
+    render() {
+      const routes = [
+        {id: 'Splash', config: Navigator.SceneConfigs.PushFromRight},
+      ];
+      return (
+          <Navigator 
+            initialRouteStack={routes}
+            initialRoute={routes[0]}
+            renderScene={this.renderScene}
+            configureScene={this.configScene}
+          />
+      );
+  }
+  renderScene (route, navigator) {
+
+      switch (route.id) {
+        case 'Splash':
+          return <SplashPage navigator={navigator}/>
+
+        case 'Login':
+
+          return  (
+          <Page activeTab='Login' navigator={navigator} >
+              <LoginPage navigator={navigator} />
+          </Page>
+          );
+
+        case 'Register': 
+
+          return  (
+                <Page activeTab='Register' navigator={navigator} >
+                    <RegisterPage navigator={navigator} />
+                </Page>
+           );
+
+        case 'Settings':
+         return  (
+             <Page activeTab='Settings' navigator={navigator} >
+                 <SettingsPage navigator={navigator} />
+             </Page>
+          );
+      }
+  }
+  configScene (route, routeStack) {
+    return route.config
   }
 }
 
@@ -34,18 +83,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    alignItems: 'center'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    textStyle: {
+    fontSize: 50,
   },
 });
 

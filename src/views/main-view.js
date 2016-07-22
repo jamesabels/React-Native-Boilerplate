@@ -1,52 +1,98 @@
 import React, { Component, } from 'react'
-import { View, Text, StyleSheet, Navigator } from 'react-native'
+import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-native'
 
-//Import Pages 
-import SettingsPage from '../pages/settings-page.js';
-import LoginPage from '../pages/login-page.js';
-import MainPage from '../pages/main-page.js';
-import SecondaryPage from '../pages/secondary-page.js';
+//Import Navbar
+import NavBar from '../components/NavBar.js';
+
+// Import Icons
+import Icon from 'react-native-vector-icons'
+
+// Import Tabs
+import { TabBar, Tab}  from '../components/TabBar.js';
 
 class MainView extends Component {
 
   static propTypes = {}
 
   static defaultProps = {}
-  
+
   componentDidMount () {
+
   }
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+        page: this.props.activeTab
+    }
   }
 
-  render() {
-      const routes = [
-        {id: 'Main', config: Navigator.SceneConfigs.PushFromRight},
-      ];
-      return (
-          <Navigator 
-            initialRouteStack={routes}
-            initialRoute={routes[0]}
-            renderScene={this.renderScene}
-            configureScene={this.configScene}
-          />
-      );
+render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.pageWrap}>
+            {this.props.children}
+        </View>
+          <TabBar>
+            <Tab  
+              label="Main"
+              iconName="ios-home"
+              iconColor="white" 
+              iconSize={30}
+              textSize={20}
+              textColor='white' 
+              onTabPress={() => this.secondTab()}
+            />
+            <Tab  
+              label="Settings"
+              iconName="ios-settings"
+              iconColor="white" 
+              iconSize={30}
+              textSize={20}
+              textColor='white' 
+              onTabPress={() => this.thirdTab()}
+            />
+          </TabBar>
+      </View>
+    );
   }
 
-  renderScene (route, navigator) {
-      switch (route.id) {
-        case 'Main': 
-          return <MainPage navigator={navigator} parentNavigator={this.props.navigator}/>
-        case 'Secondary':
-            return <SecondaryPage navigator={navigator} parentNavigator={this.props.navigator}/>
-      }
+  firstTab () {
+    this.props.navigator.replace({id: 'Login', config: Navigator.SceneConfigs.PushFromRight});
   }
 
-  configScene (route, routeStack) {
-    return route.config
+  secondTab () {
+    this.props.navigator.replace({id: 'Main', config: Navigator.SceneConfigs.PushFromRight});
   }
+
+  thirdTab () {
+    this.props.navigator.replace({id: 'Settings', config: Navigator.SceneConfigs.PushFromRight});
+  }
+  
 }
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column'
+  },
+  pageWrap: {
+    flex: 7
+  },
+  textStyle: {
+    color: 'white'
+  },
+  tabBarStyles: {
+    backgroundColor: 'black'
+  },
+  selectedText: {
+    color: 'red'
+  },
+  selectedTab : {
+    borderTopWidth:2,
+    borderTopColor:'red'
+  }
+});
+
 
 export default MainView
