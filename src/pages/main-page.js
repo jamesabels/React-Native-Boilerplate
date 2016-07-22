@@ -44,11 +44,11 @@ class MainPage extends Component {
           leftButton={() => this.back()}
         />
         <View style={styles.pageWrap}>
-          <Text>{store.getState()}</Text>
-            <Text onPress={() => this.up()}>
+          <Text style={styles.stateDisplay}>{store.getState()}</Text>
+            <Text style={styles.stateButton} onPress={() => this.up()}>
               Up
             </Text>
-            <Text onPress={() => this.down()}>
+            <Text  style={styles.stateButton} onPress={() => this.down()}>
               Down
             </Text>
         </View>
@@ -105,6 +105,19 @@ var styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     color: 'white'
+  },
+  stateDisplay: { 
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 50
+  },
+  stateButton: {
+    flex: 1,
+    color: 'white',
+    backgroundColor: 'dimgrey',
+    textAlign: 'center',
+    fontSize: 40,
+    padding: 40
   } 
 });
 
