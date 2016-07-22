@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-nat
 import store from '../stores/test.js'; 
 
 // Import Actions 
-import {deincrement, increment, login} from '../actions/login-actions.js';  
+import TestActions from '../actions/test-actions.js';  
 
 //Import Navbar
 import NavBar from '../components/NavBar.js'; 
@@ -66,7 +66,7 @@ class MainPage extends Component {
       count: store.getState()
     });
 
-    store.dispatch(increment());
+    store.dispatch(TestActions.increment());
   }
 
   down () {
@@ -74,7 +74,7 @@ class MainPage extends Component {
       count: store.getState()
     });
 
-    store.dispatch(deincrement());
+    store.dispatch(TestActions.deincrement());
   }
 }
 

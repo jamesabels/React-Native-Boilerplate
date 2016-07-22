@@ -1,24 +1,25 @@
 /// Define Type 
-const LOGIN = 'LOGIN';
 const DEINCRIMENT = 'DEINCREMENT';
 const INCRIMENT = 'INCREMENT';
 
+export default TestActions = {};
+
 // LOGIN action 
-export function login () {
+TestActions.login = function () {
     return {
         type: 'LOGIN'
     }; 
 }
 
 // INCREMENT
-export function increment() {
+TestActions.increment = function () {
     return {
         type: 'INCREMENT'
     }; 
 }
 
 // DEINCREMENT
-export function deincrement() {
+TestActions.deincrement = function () {
     return {
         type: 'DEINCREMENT'
     }; 

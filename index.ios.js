@@ -73,6 +73,10 @@ class Project extends Component {
             <MainPage navigator={navigator} />
           </MainView>
         );
+        default: 
+          return (
+            <LoginPage navigator={navigator} />
+          )
       }
   }
   configScene (route, routeStack) {
