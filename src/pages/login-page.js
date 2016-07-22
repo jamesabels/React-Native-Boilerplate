@@ -29,7 +29,6 @@ class LoginPage extends Component {
     super(props)
     this.state = {}
   }
-
   render() {
     return (
       <View style={styles.container}>
@@ -58,9 +57,9 @@ class LoginPage extends Component {
     this.props.navigator.push({id: 'Register', config: Navigator.SceneConfigs.PushFromRight});
   }
   login () {
-    this.props.navigator.push({id: 'Main', config: Navigator.SceneConfigs.PushFromRight});
+    this.props.navigator.push({id: 'Main', config: Navigator.SceneConfigs.PushFromRight}); 
   }
-}
+ }
 
 var styles = StyleSheet.create({
   container: {

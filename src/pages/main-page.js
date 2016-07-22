@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-native'
 
+// Import Store 
+import store from '../stores/test.js'; 
+
+// Import Actions 
+import {deincrement, increment, login} from '../actions/login-actions.js';  
+
 //Import Navbar
 import NavBar from '../components/NavBar.js'; 
 
@@ -22,7 +28,9 @@ class MainPage extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      count: 0
+    }
   }
 
   render() {
@@ -36,7 +44,13 @@ class MainPage extends Component {
           leftButton={() => this.back()}
         />
         <View style={styles.pageWrap}>
-          <Text>Main Page</Text>
+          <Text>{store.getState()}</Text>
+            <Text onPress={() => this.up()}>
+              Up
+            </Text>
+            <Text onPress={() => this.down()}>
+              Down
+            </Text>
         </View>
       </View>
     )
@@ -44,6 +58,23 @@ class MainPage extends Component {
 
   back () {
       this.props.navigator.pop(); 
+  }
+
+  up () {
+    
+    this.setState({
+      count: store.getState()
+    });
+
+    store.dispatch(increment());
+  }
+
+  down () {
+    this.setState({
+      count: store.getState()
+    });
+
+    store.dispatch(deincrement());
   }
 }
 
