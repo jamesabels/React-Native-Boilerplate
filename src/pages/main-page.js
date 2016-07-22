@@ -10,20 +10,15 @@ import Icon from 'react-native-vector-icons';
 //Import tcomb Forms 
 import t from 'tcomb-form-native';
 
-var Form = t.form.Form; 
 
-var Login = t.struct({
-  username: t.String,
-  password: t.String
-});
-
-var Options = {}
-
-class LoginPage extends Component {
+class MainPage extends Component {
 
   static propTypes = {}
 
   static defaultProps = {}
+  
+  componentDidMount () {
+  }
 
   constructor(props) {
     super(props)
@@ -32,35 +27,26 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+    <View style={styles.container}>
       <NavBar 
           textColor="white"
-          title="Login"
-          rightText="Register"
+          title="Main"
+          leftText="Logout"
           buttonSize={16}
-          rightButton={() => this.register()}
+          leftButton={() => this.back()}
         />
         <View style={styles.pageWrap}>
-          <Form 
-            ref="form" 
-            type={Login} 
-            options={Options} 
-          />
-          <TouchableHighlight style={styles.button} onPress={() => this.login()} underlayColor='dimgrey'>
-              <Text style={styles.buttonText}>Login</Text>
-          </TouchableHighlight>
+          <Text>Main Page</Text>
         </View>
       </View>
-    );
+    )
   }
-  
-  register () {
-    this.props.navigator.push({id: 'Register', config: Navigator.SceneConfigs.PushFromRight});
-  }
-  login () {
-    this.props.navigator.push({id: 'Main', config: Navigator.SceneConfigs.PushFromRight});
+
+  back () {
+      this.props.navigator.pop(); 
   }
 }
+
 
 var styles = StyleSheet.create({
   container: {
@@ -91,4 +77,5 @@ var styles = StyleSheet.create({
   } 
 });
 
-export default LoginPage
+
+export default MainPage

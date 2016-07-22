@@ -37,7 +37,7 @@ class SettingsPage extends Component {
        <NavBar
             textColor="white"
             title="Settings"
-            leftText="Back"
+            leftText="Logout"
             buttonSize={16}
             leftButton={() => this.back()}
         />
