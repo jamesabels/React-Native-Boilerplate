@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-native'
+import { View, Text, Navigator, TouchableHighlight } from 'react-native'
+
+//Import Styles
+import { LayoutStyles, ButtonStyles } from '../style/style.js';
 
 //Import Navbar
 import NavBar from '../components/NavBar.js'; 
 
 // Import Icons 
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons';
 
 //Import tcomb Forms 
 import t from 'tcomb-form-native';
@@ -29,10 +32,9 @@ class LoginPage extends Component {
     super(props)
     this.state = {}
   }
-
   render() {
     return (
-      <View style={styles.container}>
+      <View style={LayoutStyles.container}>
       <NavBar 
           textColor="white"
           title="Login"
@@ -40,15 +42,14 @@ class LoginPage extends Component {
           buttonSize={16}
           rightButton={() => this.register()}
         />
-        <View style={styles.pageWrap}>
-          <Text style={styles.pageHeader}>Login</Text>
+        <View style={LayoutStyles.pageWrap}>
           <Form 
             ref="form" 
             type={Login} 
             options={Options} 
           />
-          <TouchableHighlight style={styles.button} onPress={() => this.login()} underlayColor='dimgrey'>
-              <Text style={styles.buttonText}>Login</Text>
+          <TouchableHighlight style={ButtonStyles.button} onPress={() => this.login()} underlayColor='dimgrey'>
+              <Text style={ButtonStyles.buttonText}>Login</Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -56,40 +57,11 @@ class LoginPage extends Component {
   }
   
   register () {
-    this.props.navigator.push({id: 'Register', config: Navigator.SceneConfigs.VerticalUpSwipeJump});
+    this.props.navigator.push({id: 'Register', config: Navigator.SceneConfigs.PushFromRight});
   }
   login () {
-    this.props.navigator.push({id: 'Main', config: Navigator.SceneConfigs.FloatFromBottom})
+    this.props.navigator.push({id: 'Main', config: Navigator.SceneConfigs.PushFromRight}); 
   }
-}
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 20
-  },
-  pageWrap: {
-    flex: 11,
-    padding: 20,
-    flexDirection: 'column',
-    backgroundColor: 'white'
-  },
-  pageHeader: {
-    textAlign: 'center',
-    fontSize: 50,
-    marginTop: 5,
-    marginBottom: 20
-  },
-  button: {
-    marginTop: 10,
-    backgroundColor: 'black',
-    padding: 10,
-    borderRadius: 5
-  },
-  buttonText: {
-    textAlign: 'center',
-    color: 'white'
-  } 
-});
+ }
 
 export default LoginPage

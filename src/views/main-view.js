@@ -1,17 +1,14 @@
 import React, { Component, } from 'react'
-import { View, StyleSheet, Navigator } from 'react-native'
-
-// Import scrollable tab view 
-import ScrollableTabView from 'react-native-scrollable-tab-view';
+import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-native'
 
 //Import Navbar
-import NavBar from '../components/NavBar.js'; 
+import NavBar from '../components/NavBar.js';
 
-//Import Pages 
-import SettingsPage from '../pages/settings-page.js';
-import LoginPage from '../pages/login-page.js';
+// Import Icons
+import Icon from 'react-native-vector-icons'
 
-
+// Import Tabs
+import { TabBar, Tab}  from '../components/TabBar.js';
 
 class MainView extends Component {
 
@@ -19,38 +16,59 @@ class MainView extends Component {
 
   static defaultProps = {}
 
+  componentDidMount () {
+
+  }
+
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+        page: this.props.activeTab
+    }
   }
 
-  render() {
+render() {
     return (
       <View style={styles.container}>
-        <NavBar 
-          textColor="white"
-          title="App Name"
-          rightText="Logout"
-          rightButton={() => this.logout()}
-        />
-        <ScrollableTabView 
-          tabBarPosition="bottom" 
-          style={styles.pageWrap}
-          tabBarUnderlineColor="white"
-          tabBarBackgroundColor="black"
-          tabBarInactiveTextColor="dimgrey"
-          tabBarActiveTextColor="white" 
-          >
-
-            <SettingsPage tabLabel="Settings" />
-       
-        </ScrollableTabView>
+        <View style={styles.pageWrap}>
+            {this.props.children}
+        </View>
+          <TabBar>
+            <Tab  
+              label="Main"
+              iconName="ios-home"
+              iconColor="white" 
+              iconSize={30}
+              textSize={20}
+              textColor='white' 
+              onTabPress={() => this.secondTab()}
+            />
+            <Tab  
+              label="Settings"
+              iconName="ios-settings"
+              iconColor="white" 
+              iconSize={30}
+              textSize={20}
+              textColor='white' 
+              onTabPress={() => this.thirdTab()}
+            />
+          </TabBar>
       </View>
-    )
+    );
   }
-  logout () {
-    this.props.navigator.pop();
+
+  firstTab () {
+    this.props.navigator.replace({id: 'Login', config: Navigator.SceneConfigs.PushFromRight});
   }
+
+  secondTab () {
+    this.props.navigator.replace({id: 'Main', config: Navigator.SceneConfigs.PushFromRight});
+  }
+
+  thirdTab () {
+    this.props.navigator.replace({id: 'Settings', config: Navigator.SceneConfigs.PushFromRight});
+  }
+  
 }
 
 var styles = StyleSheet.create({
@@ -59,7 +77,20 @@ var styles = StyleSheet.create({
     flexDirection: 'column'
   },
   pageWrap: {
-    flex: 11
+    flex: 7
+  },
+  textStyle: {
+    color: 'white'
+  },
+  tabBarStyles: {
+    backgroundColor: 'black'
+  },
+  selectedText: {
+    color: 'red'
+  },
+  selectedTab : {
+    borderTopWidth:2,
+    borderTopColor:'red'
   }
 });
 

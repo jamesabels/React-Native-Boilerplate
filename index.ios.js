@@ -14,14 +14,26 @@ import {
 import SplashPage from './src/pages/splash-page.js';
 import LoginPage from './src/pages/login-page.js' ;
 import RegisterPage from './src/pages/register-page.js';
+import SettingsPage from './src/pages/settings-page.js';
+import MainPage from './src/pages/main-page.js';
 
 // Import Views
 import MainView from './src/views/main-view.js';
 
+// Import Components
+import NavBar from './src/components/NavBar.js';
+
 class Project extends Component {
+
+      constructor(props) {
+        super(props)
+        this.state = {
+        }
+      }
+
     render() {
       const routes = [
-        {id: 'Splash', config: Navigator.SceneConfigs.FloatFromRight},
+        {id: 'Splash', config: Navigator.SceneConfigs.PushFromRight},
       ];
       return (
           <Navigator 
@@ -33,15 +45,38 @@ class Project extends Component {
       );
   }
   renderScene (route, navigator) {
+
       switch (route.id) {
+        
         case 'Splash':
           return <SplashPage navigator={navigator}/>
-        case 'Login': 
-          return <LoginPage navigator={navigator} /> 
+
+        case 'Login':
+          return  (
+            <LoginPage navigator={navigator} />
+          );
+
         case 'Register': 
-          return <RegisterPage navigator={navigator} />
+          return  (
+            <RegisterPage navigator={navigator} />
+          );
+
+        case 'Settings':
+         return  (
+             <MainView activeTab='Settings' navigator={navigator} >
+                 <SettingsPage navigator={navigator} />
+             </MainView>
+          );
         case 'Main': 
-          return <MainView navigator={navigator} />
+        return (
+          <MainView activeTab='Main' navigator={navigator} >
+            <MainPage navigator={navigator} />
+          </MainView>
+        );
+        default: 
+          return (
+            <LoginPage navigator={navigator} />
+          )
       }
   }
   configScene (route, routeStack) {

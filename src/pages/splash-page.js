@@ -1,6 +1,9 @@
 import React, { Component, } from 'react'
 import { View, Text, StyleSheet, Navigator } from 'react-native'
 
+// Import Styles 
+import { LayoutStyles } from '../style/style.js';  
+
 class SplashPage extends Component {
 
   static propTypes = {}
@@ -9,7 +12,7 @@ class SplashPage extends Component {
   
   componentDidMount () {
    setTimeout(function () {  
-      this.props.navigator.push({id: 'Login', config: Navigator.SceneConfigs.FloatFromBottom});
+      this.props.navigator.replace({id: 'Login', config: Navigator.SceneConfigs.PushFromRight});
     }.bind(this), 2000); 
   }
 
@@ -20,7 +23,7 @@ class SplashPage extends Component {
 
   render() {
     return (
-      <View style={styles.pageWrap}>
+      <View style={LayoutStyles.pageWrap}>
         <Text style={styles.textStyle}>Splash Page</Text>
       </View>
     )
@@ -28,18 +31,10 @@ class SplashPage extends Component {
 }
 
 var styles = StyleSheet.create({
-  pageWrap: {
-    marginTop: 20,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'dimgrey'
-  },
   textStyle: {
     fontSize: 50,
     color: 'white'
   },
-  
 });
 
 
