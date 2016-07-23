@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-native'
 
+// Import Actions 
+import { LayoutStyles, ButtonStyles } from '../style/style.js';  
+
 // Import Store 
 import store from '../stores/test.js'; 
 
@@ -35,7 +38,7 @@ class MainPage extends Component {
 
   render() {
     return (
-    <View style={styles.container}>
+    <View style={LayoutStyles.container}>
       <NavBar 
           textColor="white"
           title="Main"
@@ -43,7 +46,7 @@ class MainPage extends Component {
           buttonSize={16}
           leftButton={() => this.back()}
         />
-        <View style={styles.pageWrap}>
+        <View style={LayoutStyles.pageWrap}>
           <Text style={styles.stateDisplay}>{store.getState()}</Text>
             <Text style={styles.stateButton} onPress={() => this.up()}>
               Up
@@ -80,32 +83,6 @@ class MainPage extends Component {
 
 
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 20
-  },
-  pageWrap: {
-    flex: 11,
-    padding: 20,
-    flexDirection: 'column',
-    backgroundColor: 'white'
-  },
-  pageHeader: {
-    textAlign: 'center',
-    fontSize: 50,
-    marginTop: 5,
-    marginBottom: 20
-  },
-  button: {
-    marginTop: 10,
-    backgroundColor: 'black',
-    padding: 10,
-    borderRadius: 5
-  },
-  buttonText: {
-    textAlign: 'center',
-    color: 'white'
-  },
   stateDisplay: { 
     flex: 1,
     textAlign: 'center',
