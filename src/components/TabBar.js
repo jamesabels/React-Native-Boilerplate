@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-native'
 
 // Import Icons
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export class TabBar extends Component {
 
@@ -54,8 +54,8 @@ export class Tab extends Component {
     activeColor: 'orange',
     iconName: 'ios-person',
     iconColor: 'white',
-    iconSize: 50,
-    textSize: 20,
+    iconSize: 27,
+    textSize: 16,
     textColor: 'white'
   }
 
@@ -79,15 +79,15 @@ export class Tab extends Component {
 
 const styles = StyleSheet.create({
     tabWrap: {
-      flex: 1,
-      height: 20,
+      flex: 0.6,
+      height: 15,
       bottom: 0,
       flexDirection: 'row',
       alignItems: 'center',
     },
     tab: {
         flex: 1,
-        padding: 10
+        padding: 0
     },
     activeTab: {
         borderBottomWidth: 6,
@@ -97,8 +97,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     textStyle: {
-      textAlign: 'center',
-      fontSize: 20,
+      textAlign: 'center'
     },
     activeText: {
       color: 'orange',

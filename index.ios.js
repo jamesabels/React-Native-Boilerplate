@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 
 // Import Pages 
-import SplashPage from './src/pages/splash-page.js';
 import LoginPage from './src/pages/login-page.js' ;
 import RegisterPage from './src/pages/register-page.js';
 import SettingsPage from './src/pages/settings-page.js';
@@ -33,7 +32,7 @@ class Project extends Component {
 
     render() {
       const routes = [
-        {id: 'Splash', config: Navigator.SceneConfigs.PushFromRight},
+        {id: 'Login', config: Navigator.SceneConfigs.PushFromRight},
       ];
       return (
           <Navigator 
@@ -48,9 +47,6 @@ class Project extends Component {
 
       switch (route.id) {
         
-        case 'Splash':
-          return <SplashPage navigator={navigator}/>
-
         case 'Login':
           return  (
             <LoginPage navigator={navigator} />

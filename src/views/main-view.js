@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-nat
 import NavBar from '../components/NavBar.js';
 
 // Import Icons
-import Icon from 'react-native-vector-icons'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 // Import Tabs
 import { TabBar, Tab}  from '../components/TabBar.js';
@@ -36,20 +36,12 @@ render() {
           <TabBar>
             <Tab  
               label="Main"
-              iconName="ios-home"
-              iconColor="white" 
-              iconSize={30}
-              textSize={20}
-              textColor='white' 
+              iconName="home"
               onTabPress={() => this.secondTab()}
             />
             <Tab  
               label="Settings"
-              iconName="ios-settings"
-              iconColor="white" 
-              iconSize={30}
-              textSize={20}
-              textColor='white' 
+              iconName="sliders"
               onTabPress={() => this.thirdTab()}
             />
           </TabBar>
