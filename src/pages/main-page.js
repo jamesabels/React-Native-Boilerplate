@@ -36,14 +36,19 @@ class MainPage extends Component {
   render() {
     return (
       <View style={LayoutStyles.container}>
-          <View style={LayoutStyles.pageWrap}>
-            <Text style={styles.stateDisplay}>{TestStore.getState()}</Text>
-              <Text style={styles.stateButton} onPress={() => this.up()}>
-                Up
-              </Text>
-              <Text  style={styles.stateButton} onPress={() => this.down()}>
-                Down
-              </Text>
+          <View style={[LayoutStyles.pageWrap, {backgroundColor: 'darkgrey'}]}>
+            <View style={styles.stateDisplay}>
+                <Text style={styles.displayText}>{TestStore.getState()}</Text>
+            </View>
+
+              <TouchableHighlight style={styles.stateButton} onPress={() => this.up()}>
+                <Text style={styles.stateButtonText} >Up</Text>
+              </TouchableHighlight>
+          
+              <TouchableHighlight style={styles.stateButton} onPress={() => this.down()}>
+                <Text style={styles.stateButtonText}>Down</Text>
+              </TouchableHighlight>
+          
           </View>
         </View>
     )
@@ -72,16 +77,24 @@ class MainPage extends Component {
 var styles = StyleSheet.create({
   stateDisplay: { 
     flex: 1,
+    backgroundColor: 'darkgrey',
+    justifyContent: 'center'
+  },
+  displayText: {
     textAlign: 'center',
     fontSize: 50
   },
   stateButton: {
     flex: 1,
-    color: 'white',
+    justifyContent: 'center',
     backgroundColor: 'dimgrey',
-    textAlign: 'center',
-    fontSize: 40,
-    padding: 40
+    padding: 40,
+    marginBottom: 5,
+  },
+  stateButtonText: {
+     textAlign: 'center',
+     color: 'white',
+     fontSize: 40,
   } 
 });
 
