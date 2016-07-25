@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-native'
 
-// Import Actions 
+// Import Styles
 import { LayoutStyles, ButtonStyles } from '../style/style.js';  
 
 // Import Store 
-import store from '../stores/test.js'; 
+import TestStore from '../stores/test-store.js'; 
 
 // Import Actions 
 import TestActions from '../actions/test-actions.js';  
-
-//Import Navbar
-import NavBar from '../components/NavBar.js'; 
 
 // Import Icons 
 import Icon from 'react-native-vector-icons';
@@ -38,46 +35,41 @@ class MainPage extends Component {
 
   render() {
     return (
-    <View style={LayoutStyles.container}>
-      <NavBar 
-          textColor="white"
-          title="Main"
-          leftText="Logout"
-          buttonSize={16}
-          leftButton={() => this.back()}
-        />
-        <View style={LayoutStyles.pageWrap}>
-          <Text style={styles.stateDisplay}>{store.getState()}</Text>
-            <Text style={styles.stateButton} onPress={() => this.up()}>
-              Up
-            </Text>
-            <Text  style={styles.stateButton} onPress={() => this.down()}>
-              Down
-            </Text>
-        </View>
-      </View>
-    )
-  }
+      <View style={LayoutStyles.container}>
+          <View style={[LayoutStyles.pageWrap, {backgroundColor: 'darkgrey'}]}>
+            <View style={styles.stateDisplay}>
+                <Text style={styles.displayText}>{TestStore.getState()}</Text>
+            </View>
 
-  back () {
-      this.props.navigator.pop(); 
+              <TouchableHighlight style={styles.stateButton} onPress={() => this.up()}>
+                <Text style={styles.stateButtonText} >Up</Text>
+              </TouchableHighlight>
+          
+              <TouchableHighlight style={styles.stateButton} onPress={() => this.down()}>
+                <Text style={styles.stateButtonText}>Down</Text>
+              </TouchableHighlight>
+          
+          </View>
+        </View>
+    )
   }
 
   up () {
     
     this.setState({
-      count: store.getState()
+      count: TestStore.getState()
     });
 
-    store.dispatch(TestActions.increment());
+    TestStore.dispatch(TestActions.Increment());
   }
 
   down () {
+
     this.setState({
-      count: store.getState()
+      count: TestStore.getState()
     });
 
-    store.dispatch(TestActions.deincrement());
+    TestStore.dispatch(TestActions.Deincrement());
   }
 }
 
@@ -85,16 +77,24 @@ class MainPage extends Component {
 var styles = StyleSheet.create({
   stateDisplay: { 
     flex: 1,
+    backgroundColor: 'darkgrey',
+    justifyContent: 'center'
+  },
+  displayText: {
     textAlign: 'center',
     fontSize: 50
   },
   stateButton: {
     flex: 1,
-    color: 'white',
+    justifyContent: 'center',
     backgroundColor: 'dimgrey',
-    textAlign: 'center',
-    fontSize: 40,
-    padding: 40
+    padding: 40,
+    marginTop: 5,
+  },
+  stateButtonText: {
+     textAlign: 'center',
+     color: 'white',
+     fontSize: 40,
   } 
 });
 
