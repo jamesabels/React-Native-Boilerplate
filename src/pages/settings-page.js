@@ -47,10 +47,6 @@ class SettingsPage extends Component {
       </View>
     );
   }
-
-   back () {
-    Actions.pop(); 
-   }
 }
 
 export default SettingsPage

@@ -42,14 +42,16 @@ class RegisterPage extends Component {
     return (
       <View style={LayoutStyles.container}>
         <View style={LayoutStyles.pageWrap}>
-          <Form 
-            ref="form" 
-            type={Register} 
-            options={Options} 
-          />
-          <TouchableHighlight style={ButtonStyles.button} onPress={() => this.register()} underlayColor='dimgrey'>
-              <Text style={ButtonStyles.buttonText}>Register</Text>
-          </TouchableHighlight>
+          <View style={LayoutStyles.content}> 
+            <Form 
+              ref="form" 
+              type={Register} 
+              options={Options} 
+            />
+            <TouchableHighlight style={ButtonStyles.button} onPress={() => this.register()} underlayColor='dimgrey'>
+                <Text style={ButtonStyles.buttonText}>Register</Text>
+            </TouchableHighlight>
+          </View>
         </View>
       </View>
     );
