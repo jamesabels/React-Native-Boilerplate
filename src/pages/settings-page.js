@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-native'
 
+// Import Actions
+import {Actions} from 'react-native-router-flux';
+
 //Import Styles
 import { LayoutStyles, ButtonStyles } from '../style/style.js';
-
-//Import Navbar
-import NavBar from '../components/NavBar.js'; 
 
 // Import Icons 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -37,13 +37,6 @@ class SettingsPage extends Component {
   render() {
     return (
       <View style={LayoutStyles.container}>
-       <NavBar
-            textColor="white"
-            title="Settings"
-            leftText="Logout"
-            buttonSize={16}
-            leftButton={() => this.back()}
-        />
         <View style={LayoutStyles.pageWrap}>
           <Form 
             ref="form" 
@@ -56,7 +49,7 @@ class SettingsPage extends Component {
   }
 
    back () {
-    this.props.navigator.pop()
+    Actions.pop(); 
    }
 }
 
