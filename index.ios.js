@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 // Import React Naitve Components
 import {
-  Navigator, 
   TouchableHighlight,
   AppRegistry,
   StyleSheet,
@@ -10,18 +9,18 @@ import {
   View
 } from 'react-native';
 
+// Import Router 
+import {Scene, Router, Actions} from 'react-native-router-flux';
+
 // Import Pages 
-import SplashPage from './src/pages/splash-page.js';
 import LoginPage from './src/pages/login-page.js' ;
 import RegisterPage from './src/pages/register-page.js';
 import SettingsPage from './src/pages/settings-page.js';
+import MenuPage from './src/pages/menu-page.js';
 import MainPage from './src/pages/main-page.js';
 
 // Import Views
 import MainView from './src/views/main-view.js';
-
-// Import Components
-import NavBar from './src/components/NavBar.js';
 
 class Project extends Component {
 
@@ -32,67 +31,28 @@ class Project extends Component {
       }
 
     render() {
-      const routes = [
-        {id: 'Splash', config: Navigator.SceneConfigs.PushFromRight},
-      ];
       return (
-          <Navigator 
-            initialRouteStack={routes}
-            initialRoute={routes[0]}
-            renderScene={this.renderScene}
-            configureScene={this.configScene}
-          />
+        <Router>
+          <Scene key="Root">
+            <Scene key="Login" component={LoginPage} title="Login" rightTitle="Register" onRight={() => {Actions.Register();}}/>
+            <Scene key="Register" component={RegisterPage} title="Register"/>
+          </Scene>
+          <Scene key="Main">
+            <Scene 
+              key="Counter" 
+              component={MainPage} 
+              title="Counter"
+              rightTitle="Log Out" 
+              onRight={() => {Actions.pop();}}
+              leftTitle="Menu" 
+              onLeft={() => {Actions.Menu();}}
+               />
+            <Scene key="Settings" component={SettingsPage} title="Settings"/>
+            <Scene key="Menu" component={MenuPage} title="Menu"/>
+          </Scene>
+        </Router>
       );
   }
-  renderScene (route, navigator) {
-
-      switch (route.id) {
-        
-        case 'Splash':
-          return <SplashPage navigator={navigator}/>
-
-        case 'Login':
-          return  (
-            <LoginPage navigator={navigator} />
-          );
-
-        case 'Register': 
-          return  (
-            <RegisterPage navigator={navigator} />
-          );
-
-        case 'Settings':
-         return  (
-             <MainView activeTab='Settings' navigator={navigator} >
-                 <SettingsPage navigator={navigator} />
-             </MainView>
-          );
-        case 'Main': 
-        return (
-          <MainView activeTab='Main' navigator={navigator} >
-            <MainPage navigator={navigator} />
-          </MainView>
-        );
-        default: 
-          return (
-            <LoginPage navigator={navigator} />
-          )
-      }
-  }
-  configScene (route, routeStack) {
-    return route.config
-  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-    textStyle: {
-    fontSize: 50,
-  },
-});
 
 AppRegistry.registerComponent('Project', () => Project);

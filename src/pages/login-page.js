@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { View, Text, Navigator, TouchableHighlight } from 'react-native'
 
+// Import Actions 
+import LoginActions from '../actions/login-actions.js';  
+
+// Import Store 
+import LoginStore from '../stores/login-store.js'; 
+
 //Import Styles
 import { LayoutStyles, ButtonStyles } from '../style/style.js';
-
-//Import Navbar
-import NavBar from '../components/NavBar.js'; 
 
 // Import Icons 
 import Icon from 'react-native-vector-icons';
@@ -35,32 +38,20 @@ class LoginPage extends Component {
   render() {
     return (
       <View style={LayoutStyles.container}>
-      <NavBar 
-          textColor="white"
-          title="Login"
-          rightText="Register"
-          buttonSize={16}
-          rightButton={() => this.register()}
-        />
         <View style={LayoutStyles.pageWrap}>
-          <Form 
-            ref="form" 
-            type={Login} 
-            options={Options} 
-          />
-          <TouchableHighlight style={ButtonStyles.button} onPress={() => this.login()} underlayColor='dimgrey'>
-              <Text style={ButtonStyles.buttonText}>Login</Text>
-          </TouchableHighlight>
+          <View style={LayoutStyles.content}>
+            <Form 
+              ref="form" 
+              type={Login} 
+              options={Options} 
+            />
+            <TouchableHighlight style={ButtonStyles.button} onPress={() => LoginStore.dispatch(LoginActions.Login())} underlayColor='dimgrey'>
+                <Text style={ButtonStyles.buttonText}>Login</Text>
+            </TouchableHighlight>
+          </View>
         </View>
       </View>
     );
-  }
-  
-  register () {
-    this.props.navigator.push({id: 'Register', config: Navigator.SceneConfigs.PushFromRight});
-  }
-  login () {
-    this.props.navigator.push({id: 'Main', config: Navigator.SceneConfigs.PushFromRight}); 
   }
  }
 

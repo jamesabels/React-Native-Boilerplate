@@ -4,23 +4,16 @@ const INCRIMENT = 'INCREMENT';
 
 export default TestActions = {};
 
-// LOGIN action 
-TestActions.login = function () {
-    return {
-        type: 'LOGIN'
-    }; 
-}
-
 // INCREMENT
-TestActions.increment = function () {
+TestActions.Increment = function () {
     return {
-        type: 'INCREMENT'
+        type: INCRIMENT
     }; 
 }
 
 // DEINCREMENT
-TestActions.deincrement = function () {
+TestActions.Deincrement = function () {
     return {
-        type: 'DEINCREMENT'
+        type: DEINCRIMENT
     }; 
 }
