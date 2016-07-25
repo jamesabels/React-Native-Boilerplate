@@ -16,6 +16,7 @@ import {Scene, Router, Actions} from 'react-native-router-flux';
 import LoginPage from './src/pages/login-page.js' ;
 import RegisterPage from './src/pages/register-page.js';
 import SettingsPage from './src/pages/settings-page.js';
+import MenuPage from './src/pages/menu-page.js';
 import MainPage from './src/pages/main-page.js';
 
 // Import Views
@@ -32,7 +33,7 @@ class Project extends Component {
     render() {
       return (
         <Router>
-          <Scene key="root">
+          <Scene key="Root">
             <Scene key="Login" component={LoginPage} title="Login" rightTitle="Register" onRight={() => {Actions.Register();}}/>
             <Scene key="Register" component={RegisterPage} title="Register"/>
           </Scene>
@@ -44,24 +45,14 @@ class Project extends Component {
               rightTitle="Log Out" 
               onRight={() => {Actions.pop();}}
               leftTitle="Menu" 
-              onLeft={() => {Actions.Settings();}}
+              onLeft={() => {Actions.Menu();}}
                />
             <Scene key="Settings" component={SettingsPage} title="Settings"/>
+            <Scene key="Menu" component={MenuPage} title="Menu"/>
           </Scene>
         </Router>
       );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-    textStyle: {
-    fontSize: 50,
-  },
-});
 
 AppRegistry.registerComponent('Project', () => Project);

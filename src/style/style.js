@@ -7,10 +7,13 @@ export const LayoutStyles = StyleSheet.create({
   },
   pageWrap: {
     flex: 11,
-    padding: 20,
-    marginTop: 50,
+    padding: 0,
+    marginTop: 44,
     flexDirection: 'column',
     backgroundColor: 'white'
+  },
+  content: {
+    padding: 20 
   } 
 });
 

@@ -39,14 +39,16 @@ class LoginPage extends Component {
     return (
       <View style={LayoutStyles.container}>
         <View style={LayoutStyles.pageWrap}>
-          <Form 
-            ref="form" 
-            type={Login} 
-            options={Options} 
-          />
-          <TouchableHighlight style={ButtonStyles.button} onPress={() => LoginStore.dispatch(LoginActions.Login())} underlayColor='dimgrey'>
-              <Text style={ButtonStyles.buttonText}>Login</Text>
-          </TouchableHighlight>
+          <View style={LayoutStyles.content}>
+            <Form 
+              ref="form" 
+              type={Login} 
+              options={Options} 
+            />
+            <TouchableHighlight style={ButtonStyles.button} onPress={() => LoginStore.dispatch(LoginActions.Login())} underlayColor='dimgrey'>
+                <Text style={ButtonStyles.buttonText}>Login</Text>
+            </TouchableHighlight>
+          </View>
         </View>
       </View>
     );
