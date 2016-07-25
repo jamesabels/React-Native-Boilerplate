@@ -15,7 +15,7 @@ const counter = function(state = 0, action) {
     }
 }
 
-let store = createStore(counter);
+let TestStore = createStore(counter);
 
 
-export default store;
+export default TestStore;

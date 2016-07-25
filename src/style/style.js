@@ -8,6 +8,7 @@ export const LayoutStyles = StyleSheet.create({
   pageWrap: {
     flex: 11,
     padding: 20,
+    marginTop: 50,
     flexDirection: 'column',
     backgroundColor: 'white'
   } 
