@@ -2,7 +2,7 @@
 import { DATA } from '../actions/test_actions'
 
 initState = {
-    image: 'http://placehold.it/600/24f355'
+    image: 'http://placehold.it/600/f01e5d'
 }
 
 // Counter Reducer 
