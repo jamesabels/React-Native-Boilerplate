@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-native'
+import { View, Text, StyleSheet, Navigator, TouchableHighlight, Image } from 'react-native'
 
 // Import Styles
 import { LayoutStyles, ButtonStyles } from '../style/style.js';  
@@ -30,20 +30,18 @@ class MainPage extends Component {
   render() {
     return (
       <View style={LayoutStyles.container}>
-          <View style={[LayoutStyles.pageWrap, {backgroundColor: 'darkgrey'}]}>
-            <View style={styles.stateDisplay}>
-                <Text style={styles.displayText}>{this.props.count}</Text>
-            </View>
 
-              <TouchableHighlight style={styles.stateButton} onPress={() => this.props.up()}>
-                <Text style={styles.stateButtonText} >Up</Text>
+          <View style={[LayoutStyles.pageWrap, {backgroundColor: 'darkgrey'}]}>
+              
+              <View style={styles.stateDisplay}>
+                  <Image source={{uri: this.props.image}} style={{flex: 1}}/>
+              </View>
+
+              <TouchableHighlight style={styles.stateButton} onPress={() => this.props.fetch('http://jsonplaceholder.typicode.com/photos')}>
+                <Text style={styles.stateButtonText} >Change Image</Text>
               </TouchableHighlight>
-          
-              <TouchableHighlight style={styles.stateButton} onPress={() => this.props.down()}>
-                <Text style={styles.stateButtonText}>Down</Text>
-              </TouchableHighlight>
-          
-          </View>
+
+            </View>
         </View>
     )
   }
@@ -51,17 +49,14 @@ class MainPage extends Component {
 
 function mapStateToProps(state) {
     return {
-        count: state.test
+        image: state.test.image
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        up: function () {
-            dispatch(TestActions.UP());
-        },
-        down: function () {
-            dispatch(TestActions.DOWN());
+        fetch: function (url) {
+            dispatch(TestActions.GET_DATA(url));
         } 
     }
 }

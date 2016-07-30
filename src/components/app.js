@@ -29,7 +29,7 @@ export default class App extends Component {
             <Scene 
               key="Counter" 
               component={MainPage} 
-              title="Counter"
+              title="Image"
               rightTitle="Log Out" 
               onRight={() => {Actions.pop();}}
               leftTitle="Menu" 

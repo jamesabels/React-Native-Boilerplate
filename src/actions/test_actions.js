@@ -1,19 +1,29 @@
 /// Define Type 
-export const DEINCRIMENT = 'DEINCREMENT';
-export const INCRIMENT = 'INCREMENT';
+export const DATA = 'DATA'; 
 
+// Test Actions
 export default TestActions = {};
 
-// INCREMENT
-TestActions.UP = function () {
-    return {
-        type: INCRIMENT
-    }; 
-}
 
-// DEINCREMENT
-TestActions.DOWN = function () {
-    return {
-        type: DEINCRIMENT
-    }; 
+// GET DATA  
+TestActions.GET_DATA = function (url) {
+    return (dispatch) => {
+        fetch(url, {
+            method: 'GET'
+        })
+        .then((response) => response.json())
+        .then((responseData) => {
+    
+            const getIndex = () => {
+                return Math.floor(Math.random() * responseData.length) + 1;  
+            }    
+
+            return dispatch({
+                type: DATA,
+                image: responseData[getIndex()].url
+            });
+
+        })
+        .done();
+    }
 }

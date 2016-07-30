@@ -1,13 +1,17 @@
 // Import consts
-import { INCRIMENT,  DEINCRIMENT } from '../actions/test_actions'
+import { DATA } from '../actions/test_actions'
+
+initState = {
+    image: 'http://placehold.it/600/24f355'
+}
 
 // Counter Reducer 
-export default testReducer = function(state = 0, action) { 
+export default testReducer = function(state = initState, action) { 
     switch (action.type) {
-        case INCRIMENT:
-            return state + 1
-        case DEINCRIMENT:
-            return  state - 1
+        case DATA: 
+            return Object.assign({}, state, {
+                image: action.image
+            })
         default:
             return state;
     }
