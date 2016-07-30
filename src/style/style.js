@@ -16,16 +16,3 @@ export const LayoutStyles = StyleSheet.create({
     padding: 20 
   } 
 });
-
-export const ButtonStyles = StyleSheet.create({
-  button: {
-    marginTop: 10,
-    backgroundColor: 'black',
-    padding: 10,
-    borderRadius: 5
-  },
-  buttonText: {
-    textAlign: 'center',
-    color: 'white'
-  } 
-});

@@ -1,28 +1,18 @@
 import React, { Component } from 'react'
-import { View, Text, Navigator, TouchableHighlight } from 'react-native'
- 
+import { View, Navigator, TouchableHighlight } from 'react-native'
+
+// Import Native Base
+import { Text, InputGroup, Input, Button, Icon } from 'native-base';
+
 //Import Connect 
 import { connect } from 'react-redux';
 
+// Import Router Actions
+import {Actions} from 'react-native-router-flux';
+
 //Import Styles
-import { LayoutStyles, ButtonStyles } from '../style/style.js';
+import { LayoutStyles } from '../style/style.js';
 
-// Import Icons 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-//Import tcomb Forms 
-import t from 'tcomb-form-native';
-
-var Form = t.form.Form; 
-
-var Register = t.struct({
-  first_name: t.maybe(t.String),
-  last_name: t.maybe(t.String),
-  username: t.String,
-  password: t.String
-});
-
-var Options = {}
 
 class RegisterPage extends Component {
 
@@ -35,14 +25,26 @@ class RegisterPage extends Component {
       <View style={LayoutStyles.container}>
         <View style={LayoutStyles.pageWrap}>
           <View style={LayoutStyles.content}> 
-            <Form 
-              ref="form" 
-              type={Register} 
-              options={Options} 
-            />
-            <TouchableHighlight style={ButtonStyles.button} onPress={() => this.props.register()} underlayColor='dimgrey'>
-                <Text style={ButtonStyles.buttonText}>Register</Text>
-            </TouchableHighlight>
+            <InputGroup borderType="underline" style={{marginTop: 30}}>
+                <Icon name="ios-person" />
+                <Input placeholder="First Name"/>
+            </InputGroup>
+            <InputGroup borderType="underline" style={{marginTop: 30}}>
+                <Icon name="ios-person" />
+                <Input placeholder="Last Name"/>
+            </InputGroup>
+            <InputGroup borderType="underline" style={{marginTop: 30}}>
+                <Icon name="ios-contact" />
+                <Input placeholder="Username"/>
+            </InputGroup>
+            <InputGroup borderType="underline"style={{marginTop: 30}}>
+                <Icon name="ios-lock" />
+                <Input placeholder="Password" secureTextEntry={true}/>
+            </InputGroup>
+            <Button block style={{backgroundColor: 'black', height: 50,  marginTop: 30}} onPress={() => {Actions.pop()}}>
+              Register
+              <Icon name="ios-checkmark-circle" />
+            </Button>
           </View>
         </View>
       </View>
