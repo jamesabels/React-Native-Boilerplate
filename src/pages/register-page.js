@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, Navigator, TouchableHighlight } from 'react-native'
-
-// Import Actions 
-import LoginActions from '../actions/login_actions.js';  
-
+ 
 //Import Connect 
 import { connect } from 'react-redux';
 
