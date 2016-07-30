@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-native'
+import { View, StyleSheet, Navigator, TouchableHighlight } from 'react-native'
+
+// Import Native Base 
+import { Container, Content, List, Text, ListItem, Icon, Badge, Radio } from 'native-base';
 
 // Import Actions
 import {Actions} from 'react-native-router-flux';
@@ -9,20 +12,6 @@ import { connect } from 'react-redux';
 
 //Import Styles
 import { LayoutStyles, ButtonStyles } from '../style/style.js';
-
-// Import Icons 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-//Import tcomb Forms 
-import t from 'tcomb-form-native';
-
-var Form = t.form.Form; 
-
-var Settings = t.struct({
-  Setting_One: t.Boolean,
-  Setting_Two: t.Boolean,
-  Setting_Three: t.Boolean
-});
 
 var Options = {}
 
@@ -36,11 +25,24 @@ class SettingsPage extends Component {
     return (
       <View style={LayoutStyles.container}>
         <View style={LayoutStyles.pageWrap}>
-          <Form 
-            ref="form" 
-            type={Settings} 
-            options={Options} 
-          />
+          <List>
+            <ListItem>
+                <Text>Option One</Text>
+                <Radio selected={false} />
+            </ListItem>
+            <ListItem>
+                <Text>Option Two</Text>
+                <Radio selected={false} />
+            </ListItem>
+            <ListItem>
+                <Text>Option Three</Text>
+                <Badge>2</Badge>
+            </ListItem>
+            <ListItem iconRight>
+                <Text>Option Four</Text>
+                <Icon name="ios-arrow-forward" />
+            </ListItem>
+        </List>
         </View>
       </View>
     );
