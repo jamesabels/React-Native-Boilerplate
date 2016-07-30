@@ -4,6 +4,9 @@ import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-nat
 // Import Actions
 import {Actions} from 'react-native-router-flux';
 
+//Import Connect 
+import { connect } from 'react-redux';
+
 //Import Styles
 import { LayoutStyles, ButtonStyles } from '../style/style.js';
 
@@ -44,4 +47,16 @@ class SettingsPage extends Component {
   }
 }
 
-export default SettingsPage
+function mapStateToProps(state) {
+    return {
+       
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+     
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage);

@@ -81,7 +81,8 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'dimgrey',
     padding: 40,
-    marginTop: 5,
+    borderColor: 'black',
+    borderBottomWidth: 10
   },
   stateButtonText: {
      textAlign: 'center',

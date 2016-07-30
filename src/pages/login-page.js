@@ -4,6 +4,9 @@ import { View, Text, Navigator, TouchableHighlight } from 'react-native'
 // Import Actions 
 import LoginActions from '../actions/login_actions.js';  
 
+//Import Connect 
+import { connect } from 'react-redux';
+
 // Import Router Actions
 import {Actions} from 'react-native-router-flux';
 
@@ -30,7 +33,7 @@ class LoginPage extends Component {
   constructor(props) {
     super(props)
   }
-  
+
   render() {
     return (
       <View style={LayoutStyles.container}>
@@ -51,4 +54,16 @@ class LoginPage extends Component {
   }
  }
 
-export default LoginPage
+function mapStateToProps(state) {
+    return {
+       
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+     
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
