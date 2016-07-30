@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-native'
+import { View, Text, StyleSheet, Navigator, TouchableHighlight, Image } from 'react-native'
 
 // Import Styles
 import { LayoutStyles, ButtonStyles } from '../style/style.js';  
 
-// Import Store 
-import TestStore from '../stores/test-store.js'; 
-
 // Import Actions 
-import TestActions from '../actions/test-actions.js';  
+import TestActions from '../actions/test_actions.js';  
+
+//Import Connect 
+import { connect } from 'react-redux';
 
 // Import Icons 
 import Icon from 'react-native-vector-icons';
@@ -19,60 +19,47 @@ import t from 'tcomb-form-native';
 
 class MainPage extends Component {
 
-  static propTypes = {}
-
-  static defaultProps = {}
-  
-  componentDidMount () {
-  }
-
   constructor(props) {
     super(props)
-    this.state = {
-      count: 0
-    }
+  }
+
+  componentDidMount () {
+  
   }
 
   render() {
     return (
       <View style={LayoutStyles.container}>
-          <View style={[LayoutStyles.pageWrap, {backgroundColor: 'darkgrey'}]}>
-            <View style={styles.stateDisplay}>
-                <Text style={styles.displayText}>{TestStore.getState()}</Text>
-            </View>
 
-              <TouchableHighlight style={styles.stateButton} onPress={() => this.up()}>
-                <Text style={styles.stateButtonText} >Up</Text>
+          <View style={[LayoutStyles.pageWrap, {backgroundColor: 'darkgrey'}]}>
+              
+              <View style={styles.stateDisplay}>
+                  <Image source={{uri: this.props.image}} style={{flex: 1}}/>
+              </View>
+
+              <TouchableHighlight style={styles.stateButton} onPress={() => this.props.fetch('http://jsonplaceholder.typicode.com/photos')}>
+                <Text style={styles.stateButtonText} >Change Image</Text>
               </TouchableHighlight>
-          
-              <TouchableHighlight style={styles.stateButton} onPress={() => this.down()}>
-                <Text style={styles.stateButtonText}>Down</Text>
-              </TouchableHighlight>
-          
-          </View>
+
+            </View>
         </View>
     )
   }
-
-  up () {
-    
-    this.setState({
-      count: TestStore.getState()
-    });
-
-    TestStore.dispatch(TestActions.Increment());
-  }
-
-  down () {
-
-    this.setState({
-      count: TestStore.getState()
-    });
-
-    TestStore.dispatch(TestActions.Deincrement());
-  }
 }
 
+function mapStateToProps(state) {
+    return {
+        image: state.test.image
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        fetch: function (url) {
+            dispatch(TestActions.GET_DATA(url));
+        } 
+    }
+}
 
 var styles = StyleSheet.create({
   stateDisplay: { 
@@ -89,7 +76,8 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'dimgrey',
     padding: 40,
-    marginTop: 5,
+    borderColor: 'black',
+    borderBottomWidth: 10
   },
   stateButtonText: {
      textAlign: 'center',
@@ -99,4 +87,4 @@ var styles = StyleSheet.create({
 });
 
 
-export default MainPage
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
