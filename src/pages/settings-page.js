@@ -25,13 +25,8 @@ var Options = {}
 
 class SettingsPage extends Component {
 
-  static propTypes = {}
-
-  static defaultProps = {}
-
   constructor(props) {
     super(props)
-    this.state = {}
   }
 
   render() {

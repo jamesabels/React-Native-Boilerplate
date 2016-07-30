@@ -4,11 +4,11 @@ import { View, Text, StyleSheet, Navigator, TouchableHighlight } from 'react-nat
 // Import Styles
 import { LayoutStyles, ButtonStyles } from '../style/style.js';  
 
-// Import Store 
-import TestStore from '../stores/test-store.js'; 
-
 // Import Actions 
-import TestActions from '../actions/test-actions.js';  
+import TestActions from '../actions/test_actions.js';  
+
+//Import Connect 
+import { connect } from 'react-redux';
 
 // Import Icons 
 import Icon from 'react-native-vector-icons';
@@ -19,18 +19,12 @@ import t from 'tcomb-form-native';
 
 class MainPage extends Component {
 
-  static propTypes = {}
-
-  static defaultProps = {}
-  
-  componentDidMount () {
-  }
-
   constructor(props) {
     super(props)
-    this.state = {
-      count: 0
-    }
+  }
+
+  componentDidMount () {
+  
   }
 
   render() {
@@ -38,14 +32,14 @@ class MainPage extends Component {
       <View style={LayoutStyles.container}>
           <View style={[LayoutStyles.pageWrap, {backgroundColor: 'darkgrey'}]}>
             <View style={styles.stateDisplay}>
-                <Text style={styles.displayText}>{TestStore.getState()}</Text>
+                <Text style={styles.displayText}>{this.props.count}</Text>
             </View>
 
-              <TouchableHighlight style={styles.stateButton} onPress={() => this.up()}>
+              <TouchableHighlight style={styles.stateButton} onPress={() => this.props.up()}>
                 <Text style={styles.stateButtonText} >Up</Text>
               </TouchableHighlight>
           
-              <TouchableHighlight style={styles.stateButton} onPress={() => this.down()}>
+              <TouchableHighlight style={styles.stateButton} onPress={() => this.props.down()}>
                 <Text style={styles.stateButtonText}>Down</Text>
               </TouchableHighlight>
           
@@ -53,26 +47,24 @@ class MainPage extends Component {
         </View>
     )
   }
-
-  up () {
-    
-    this.setState({
-      count: TestStore.getState()
-    });
-
-    TestStore.dispatch(TestActions.Increment());
-  }
-
-  down () {
-
-    this.setState({
-      count: TestStore.getState()
-    });
-
-    TestStore.dispatch(TestActions.Deincrement());
-  }
 }
 
+function mapStateToProps(state) {
+    return {
+        count: state.test
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        up: function () {
+            dispatch(TestActions.UP());
+        },
+        down: function () {
+            dispatch(TestActions.DOWN());
+        } 
+    }
+}
 
 var styles = StyleSheet.create({
   stateDisplay: { 
@@ -99,4 +91,4 @@ var styles = StyleSheet.create({
 });
 
 
-export default MainPage
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
