@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { View, Text, Navigator, TouchableHighlight } from 'react-native'
 
 // Import Actions 
-import LoginActions from '../actions/login-actions.js';  
+import LoginActions from '../actions/login_actions.js';  
 
-// Import Store 
-import LoginStore from '../stores/login-store.js'; 
+//Import Connect 
+import { connect } from 'react-redux';
 
 //Import Styles
 import { LayoutStyles, ButtonStyles } from '../style/style.js';
@@ -29,13 +29,8 @@ var Options = {}
 
 class RegisterPage extends Component {
 
-  static propTypes = {}
-
-  static defaultProps = {}
-
   constructor(props) {
     super(props)
-    this.state = {}
   }
 
   render() {
@@ -48,7 +43,7 @@ class RegisterPage extends Component {
               type={Register} 
               options={Options} 
             />
-            <TouchableHighlight style={ButtonStyles.button} onPress={() => this.register()} underlayColor='dimgrey'>
+            <TouchableHighlight style={ButtonStyles.button} onPress={() => this.props.register()} underlayColor='dimgrey'>
                 <Text style={ButtonStyles.buttonText}>Register</Text>
             </TouchableHighlight>
           </View>
@@ -56,9 +51,20 @@ class RegisterPage extends Component {
       </View>
     );
   }
-  register () {
-    LoginStore.dispatch(LoginActions.Register());
-  }
 }
 
-export default RegisterPage
+function mapStateToProps(state) {
+    return {
+       
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+      register: function () {
+        
+      }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);
