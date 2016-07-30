@@ -1,27 +1,17 @@
 import React, { Component } from 'react'
-import { View, Text, Navigator, TouchableHighlight } from 'react-native'
+import { View, Navigator, TouchableHighlight } from 'react-native'
 
 //Import Connect 
 import { connect } from 'react-redux';
+
+// Import Native Base
+import { Text, InputGroup, Input, Button, Icon } from 'native-base';
 
 // Import Router Actions
 import {Actions} from 'react-native-router-flux';
 
 //Import Styles
-import { LayoutStyles, ButtonStyles } from '../style/style.js';
-
-// Import Icons 
-import Icon from 'react-native-vector-icons';
-
-//Import tcomb Forms 
-import t from 'tcomb-form-native';
-
-var Form = t.form.Form; 
-
-var Login = t.struct({
-  username: t.String,
-  password: t.String
-});
+import { LayoutStyles } from '../style/style.js';
 
 var Options = {}
 
@@ -36,14 +26,18 @@ class LoginPage extends Component {
       <View style={LayoutStyles.container}>
         <View style={LayoutStyles.pageWrap}>
           <View style={LayoutStyles.content}>
-            <Form 
-              ref="form" 
-              type={Login} 
-              options={Options} 
-            />
-            <TouchableHighlight style={ButtonStyles.button} onPress={() => Actions.Main()} underlayColor='dimgrey'>
-                <Text style={ButtonStyles.buttonText}>Login</Text>
-            </TouchableHighlight>
+            <InputGroup borderType="underline" style={{marginTop: 30}}>
+                <Icon name="ios-contact" />
+                <Input placeholder="Username"/>
+            </InputGroup>
+            <InputGroup borderType="underline" style={{marginTop: 30}}>
+                <Icon name="ios-lock" />
+                <Input placeholder="Password" secureTextEntry={true}/>
+            </InputGroup>
+            <Button block style={{backgroundColor: 'black', height: 50,  marginTop: 30}} onPress={() => Actions.Main()}>
+              Login
+              <Icon name="ios-checkmark-circle" />
+            </Button>
           </View>
         </View>
       </View>

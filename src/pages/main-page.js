@@ -10,13 +10,6 @@ import TestActions from '../actions/test_actions.js';
 //Import Connect 
 import { connect } from 'react-redux';
 
-// Import Icons 
-import Icon from 'react-native-vector-icons';
-
-//Import tcomb Forms 
-import t from 'tcomb-form-native';
-
-
 class MainPage extends Component {
 
   constructor(props) {
